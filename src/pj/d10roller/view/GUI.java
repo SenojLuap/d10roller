@@ -5,6 +5,7 @@
  */
 package pj.d10roller.view;
 
+import java.awt.Toolkit;
 import pj.d10roller.controller.Controller;
 
 /**
@@ -42,9 +43,10 @@ public class GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("d10roller");
+        setIconImage(Toolkit.getDefaultToolkit().getImage("pj/d10roller/view/icon.png"));
         setResizable(false);
 
-        rollButton.setFont(new java.awt.Font("Cantarell", 0, 18)); // NOI18N
+        rollButton.setFont(new java.awt.Font("Cantarell", 0, 18));
         rollButton.setText("MUNDO ROLL!");
         rollButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,16 +61,16 @@ public class GUI extends javax.swing.JFrame {
 
         jPanel1.setBorder(null);
 
-        rollsLabel.setFont(new java.awt.Font("Cantarell", 0, 18)); // NOI18N
+        rollsLabel.setFont(new java.awt.Font("Cantarell", 0, 18));
         rollsLabel.setText("Rolls");
 
-        rollsSpinner.setFont(new java.awt.Font("Cantarell", 0, 18)); // NOI18N
+        rollsSpinner.setFont(new java.awt.Font("Cantarell", 0, 18));
         rollsSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 
-        keepsLabel.setFont(new java.awt.Font("Cantarell", 0, 18)); // NOI18N
+        keepsLabel.setFont(new java.awt.Font("Cantarell", 0, 18));
         keepsLabel.setText("Keeps");
 
-        keepsSpinner.setFont(new java.awt.Font("Cantarell", 0, 18)); // NOI18N
+        keepsSpinner.setFont(new java.awt.Font("Cantarell", 0, 18));
         keepsSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -100,10 +102,10 @@ public class GUI extends javax.swing.JFrame {
 
         tabPanel.addTab("Keeps Roll", jPanel1);
 
-        percentileLabel.setFont(new java.awt.Font("Cantarell", 0, 18)); // NOI18N
+        percentileLabel.setFont(new java.awt.Font("Cantarell", 0, 18));
         percentileLabel.setText("Modifier");
 
-        percentileSpinner.setFont(new java.awt.Font("Cantarell", 0, 18)); // NOI18N
+        percentileSpinner.setFont(new java.awt.Font("Cantarell", 0, 18));
         percentileSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -114,7 +116,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(131, 131, 131)
                 .addComponent(percentileLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(percentileSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                .addComponent(percentileSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                 .addGap(93, 93, 93))
         );
         jPanel2Layout.setVerticalGroup(
@@ -203,6 +205,7 @@ public class GUI extends javax.swing.JFrame {
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(new Runnable() {
 
+      @Override
       public void run() {
         new GUI().setVisible(true);
       }
