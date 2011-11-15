@@ -39,6 +39,17 @@ public class Controller {
       resultStr += "\tExplodes: " + explodes;
     return resultStr;
   }
+
+  public static String calcPercentileRoll(int mod) {
+    String resultStr = "";
+    Date now = new Date();
+    SimpleDateFormat format = new SimpleDateFormat("[hh:mm:ss a]");
+    resultStr += format.format(now);
+    resultStr += " % + " + mod + ":\t";
+    int roll = (int)(Math.random() * 100) + 1;
+    resultStr += "Rolled: " + roll + "\tTotal: " + (roll + mod);
+    return resultStr;
+  }
   
   public static void main(String[] args) {
     GUI gui = new GUI();
