@@ -16,6 +16,26 @@ public class GUI extends javax.swing.JFrame {
 
   /** Creates new form GUI */
   public GUI() {
+    try {
+      for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+        if ("Nimbus".equals(info.getName())) {
+          javax.swing.UIManager.setLookAndFeel(info.getClassName());
+          break;
+        }
+      }
+    }
+    catch (ClassNotFoundException ex) {
+      java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    catch (InstantiationException ex) {
+      java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    catch (IllegalAccessException ex) {
+      java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    catch (javax.swing.UnsupportedLookAndFeelException ex) {
+      java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
     initComponents();
   }
 
@@ -28,18 +48,24 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        critOptionGroup = new javax.swing.ButtonGroup();
         rollButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        resultsScrollPane = new javax.swing.JScrollPane();
         resultsTextArea = new javax.swing.JTextArea();
         tabPanel = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        keepsRollPanel = new javax.swing.JPanel();
         rollsLabel = new javax.swing.JLabel();
         rollsSpinner = new javax.swing.JSpinner();
         keepsLabel = new javax.swing.JLabel();
         keepsSpinner = new javax.swing.JSpinner();
-        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        crit8Button = new javax.swing.JRadioButton();
+        crit9Button = new javax.swing.JRadioButton();
+        crit10Button = new javax.swing.JRadioButton();
+        percentileRollPanel = new javax.swing.JPanel();
         percentileLabel = new javax.swing.JLabel();
         percentileSpinner = new javax.swing.JSpinner();
+        clearButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("d10roller");
@@ -57,9 +83,11 @@ public class GUI extends javax.swing.JFrame {
         resultsTextArea.setColumns(20);
         resultsTextArea.setEditable(false);
         resultsTextArea.setRows(5);
-        jScrollPane1.setViewportView(resultsTextArea);
+        resultsScrollPane.setViewportView(resultsTextArea);
 
-        jPanel1.setBorder(null);
+        tabPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        keepsRollPanel.setBorder(null);
 
         rollsLabel.setFont(new java.awt.Font("Cantarell", 0, 18));
         rollsLabel.setText("Rolls");
@@ -73,34 +101,65 @@ public class GUI extends javax.swing.JFrame {
         keepsSpinner.setFont(new java.awt.Font("Cantarell", 0, 18));
         keepsSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jLabel1.setFont(new java.awt.Font("Cantarell", 0, 18));
+        jLabel1.setText("Explode On:");
+
+        critOptionGroup.add(crit8Button);
+        crit8Button.setText("8");
+
+        critOptionGroup.add(crit9Button);
+        crit9Button.setText("9");
+
+        critOptionGroup.add(crit10Button);
+        crit10Button.setSelected(true);
+        crit10Button.setText("10");
+
+        javax.swing.GroupLayout keepsRollPanelLayout = new javax.swing.GroupLayout(keepsRollPanel);
+        keepsRollPanel.setLayout(keepsRollPanelLayout);
+        keepsRollPanelLayout.setHorizontalGroup(
+            keepsRollPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(keepsRollPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rollsLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rollsSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(keepsLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(keepsSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(keepsRollPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(keepsRollPanelLayout.createSequentialGroup()
+                        .addComponent(rollsLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rollsSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(keepsRollPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, keepsRollPanelLayout.createSequentialGroup()
+                        .addComponent(crit8Button)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(crit9Button)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(crit10Button)
+                        .addGap(100, 100, 100))
+                    .addGroup(keepsRollPanelLayout.createSequentialGroup()
+                        .addComponent(keepsLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(keepsSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        keepsRollPanelLayout.setVerticalGroup(
+            keepsRollPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(keepsRollPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(keepsRollPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rollsLabel)
-                    .addComponent(keepsSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rollsSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(keepsLabel)
-                    .addComponent(rollsSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(keepsSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(keepsRollPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(crit8Button)
+                    .addComponent(crit9Button)
+                    .addComponent(crit10Button))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tabPanel.addTab("Keeps Roll", jPanel1);
+        tabPanel.addTab("Keeps Roll", keepsRollPanel);
 
         percentileLabel.setFont(new java.awt.Font("Cantarell", 0, 18));
         percentileLabel.setText("Modifier");
@@ -108,55 +167,66 @@ public class GUI extends javax.swing.JFrame {
         percentileSpinner.setFont(new java.awt.Font("Cantarell", 0, 18));
         percentileSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout percentileRollPanelLayout = new javax.swing.GroupLayout(percentileRollPanel);
+        percentileRollPanel.setLayout(percentileRollPanelLayout);
+        percentileRollPanelLayout.setHorizontalGroup(
+            percentileRollPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, percentileRollPanelLayout.createSequentialGroup()
                 .addGap(131, 131, 131)
                 .addComponent(percentileLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(percentileSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-                .addGap(93, 93, 93))
+                .addGap(121, 121, 121))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        percentileRollPanelLayout.setVerticalGroup(
+            percentileRollPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(percentileRollPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(percentileRollPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(percentileLabel)
                     .addComponent(percentileSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
-        tabPanel.addTab("Percentile", jPanel2);
+        tabPanel.addTab("Percentile", percentileRollPanel);
+
+        clearButton.setFont(new java.awt.Font("Cantarell", 0, 18));
+        clearButton.setText("MUNDO SELL!");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonbuttonPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addComponent(tabPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE))
-                        .addComponent(rollButton, javax.swing.GroupLayout.Alignment.CENTER))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tabPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(rollButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                        .addComponent(clearButton)
+                        .addGap(36, 36, 36))
+                    .addComponent(resultsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rollButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rollButton)
+                    .addComponent(clearButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(resultsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -165,8 +235,15 @@ public class GUI extends javax.swing.JFrame {
   private void buttonPressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPressed
     switch(tabPanel.getSelectedIndex()) {
       case 0:
+        int crit;
+        if(crit10Button.isSelected())
+          crit = 10;
+        else if(crit9Button.isSelected())
+          crit = 9;
+        else
+          crit = 8;
         updateDisplay(Controller.calcKeepRoll((Integer)rollsSpinner.getValue(),
-                (Integer)keepsSpinner.getValue()));
+                (Integer)keepsSpinner.getValue(), crit));
         break;
       case 1:
         updateDisplay(Controller.calcPercentileRoll(
@@ -174,6 +251,10 @@ public class GUI extends javax.swing.JFrame {
         break;
     }
   }//GEN-LAST:event_buttonPressed
+
+  private void clearButtonbuttonPressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonbuttonPressed
+    clearDisplay();
+  }//GEN-LAST:event_clearButtonbuttonPressed
 
   /**
    * @param args the command line arguments
@@ -222,17 +303,27 @@ public class GUI extends javax.swing.JFrame {
   }
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton clearButton;
+    private javax.swing.JRadioButton crit10Button;
+    private javax.swing.JRadioButton crit8Button;
+    private javax.swing.JRadioButton crit9Button;
+    private javax.swing.ButtonGroup critOptionGroup;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel keepsLabel;
+    private javax.swing.JPanel keepsRollPanel;
     private javax.swing.JSpinner keepsSpinner;
     private javax.swing.JLabel percentileLabel;
+    private javax.swing.JPanel percentileRollPanel;
     private javax.swing.JSpinner percentileSpinner;
+    private javax.swing.JScrollPane resultsScrollPane;
     private javax.swing.JTextArea resultsTextArea;
     private javax.swing.JButton rollButton;
     private javax.swing.JLabel rollsLabel;
     private javax.swing.JSpinner rollsSpinner;
     private javax.swing.JTabbedPane tabPanel;
     // End of variables declaration//GEN-END:variables
+
+  private void clearDisplay() {
+    resultsTextArea.setText("");
+  }
 }

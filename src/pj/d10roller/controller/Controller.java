@@ -12,7 +12,7 @@ import pj.d10roller.view.GUI;
  */
 public class Controller {
   
-  public static String calcKeepRoll(int rolls, int keeps) {
+  public static String calcKeepRoll(int rolls, int keeps, int crit) {
     String resultStr = "";
     Date now = new Date();
     SimpleDateFormat format = new SimpleDateFormat("[hh:mm:ss a]");
@@ -23,7 +23,7 @@ public class Controller {
     for(int i = 0; i < rolls; i++) {
       int roll = (int)(Math.random() * 10) + 1;
       int rollTotal = roll;
-      while(roll == 10) {
+      while(roll >= crit) {
         explodes++;
         roll = (int)(Math.random() * 10) + 1;
         rollTotal += roll;
